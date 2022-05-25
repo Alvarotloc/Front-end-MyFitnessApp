@@ -1,6 +1,13 @@
+import Grafica from "../components/Grafica"
+
 const DietaMain = () => {
   return (
-    <div>DietaMain</div>
+    <main>
+      <Grafica />
+      <div className="comidas">
+
+      </div>
+    </main>
   )
 }
 
