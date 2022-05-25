@@ -12,7 +12,7 @@ const Comida = () => {
                 <MacroNutriente />
             </div>
         </div>
-        <div className="circulo"></div>
+        <img src="https://spoonacular.com/recipeImages/716429-312x231.jpg" className="imagen-comida" />
     </div>
   )
 }

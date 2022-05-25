@@ -160,14 +160,13 @@ body {
   padding: 1rem;
   border-radius: 1rem; */
 }
-.circulo {
+.imagen-comida {
   height: 10rem;
   width: 10rem;
   border-radius: 50%;
-  background-color: var(--primary);
 }
 @media (min-width: 768px) {
-  .circulo {
+  .imagen-comida {
     grid-column: 6 / 7;
   }
 }
