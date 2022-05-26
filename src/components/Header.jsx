@@ -17,8 +17,8 @@ const Header = () => {
             Dieta
           </Link>
           <Link
-            to="/macros"
-            className={`${pathname === "/macros" ? "activo" : ""}`}
+            to="/agregar"
+            className={`${pathname === "/agregar" ? "activo" : ""}`}
           >
             Macros
           </Link>

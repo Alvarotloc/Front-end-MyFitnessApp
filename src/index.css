@@ -3,6 +3,8 @@
   --blanco: #ffffff;
   --secundary: #bcffdb;
   --grafica: #00ca71;
+  --azul: #3b82f6;
+  --gris-claro: #f5f5f5;
 }
 html {
   font-size: 62.5%;
@@ -20,6 +22,15 @@ html {
 body {
   font-size: 16px;
   /* Esto lo que hace es que 1rem equivalga a 10px */
+  background-color: var(--gris-claro);
+}
+.sombra {
+  box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
+  -webkit-box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
+  -moz-box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
+  background-color: var(--blanco);
+  padding: 4rem;
+  border-radius: 1.2rem;
 }
 .header-layout {
   background-color: var(--primary);
@@ -44,13 +55,13 @@ body {
   text-decoration: none;
   color: var(--blanco);
   text-transform: uppercase;
-  transition: all 0.3s;
+  transition: font-size 0.3s 0.1s;
 }
 .activo {
   font-weight: 500;
   font-size: 2.5rem;
 }
-.nav-principal a:hover {
+.nav-principal a:not(.activo):hover {
   font-size: 1.7rem;
 }
 .contenedor-outlet {
@@ -62,22 +73,27 @@ body {
   align-items: center;
   gap: 10rem;
 }
-@media (min-width: 1200px) {
+@media (min-width: 1310px) {
   .dieta-main {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 0;
+    align-items: flex-start;
   }
 }
 .contenedor-grafica {
   display: grid;
   justify-items: center;
   gap: 5rem;
-  width: 50vw;
+  width: 90vw;
 }
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
   .contenedor-grafica {
-    grid-column: 1 / 3;
+    width: 50vw;
+  }
+}
+@media (min-width: 1310px) {
+  .contenedor-grafica {
+    grid-column: 1 / 4;
     width: auto;
   }
 }
@@ -89,38 +105,29 @@ body {
   font-size: 0.9rem !important;
   font-weight: 600;
 }
-.contenedor-comidas {
-  grid-column: 4 / 8;
-  display: grid;
-  gap: 5rem;
-}
 .comidas {
   overflow-y: scroll;
   padding: 1rem;
-  height: 80vh;
-  display: grid;
-  row-gap: 4.1rem;
+  height: 110vh;
+  display: flex;
+  flex-direction: column;
+  grid-column: 4 / 8;
+  gap: 5rem;
 }
-/* .comidas::-webkit-scrollbar {
-  display: none;
-} */
 .comida {
-  background-color: var(--secundary);
   padding: 2rem;
+  width: 100%;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3rem;
-  -webkit-box-shadow: 5px 5px 15px 2px rgba(220, 220, 220, 0.7);
-  box-shadow: 5px 5px 15px 2px rgba(220, 220, 220, 0.7);
+  cursor: pointer;
 }
-@media (min-width: 768px) {
+@media (min-width: 690px) {
   .comida {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    height: 15rem;
-    gap: 0;
   }
 }
 .contenido-comida {
@@ -129,7 +136,7 @@ body {
   row-gap: 2rem;
   align-items: center;
 }
-@media (min-width: 768px) {
+@media (min-width: 690px) {
   .contenido-comida {
     grid-column: 1 / 6;
     align-items: flex-start;
@@ -156,23 +163,24 @@ body {
 }
 .macronutriente {
   text-align: center;
-  /* background-color: var(--grafica);
+  background-color: var(--secundary);
   padding: 1rem;
-  border-radius: 1rem; */
+  border-radius: 1rem;
 }
 .imagen-comida {
   height: 10rem;
   width: 10rem;
   border-radius: 50%;
 }
-@media (min-width: 768px) {
+@media (min-width: 690px) {
   .imagen-comida {
     grid-column: 6 / 7;
   }
 }
 .boton {
-  padding: 1.5rem;
-  border: none;
+  width: 100%;
+  padding: 1.5rem 0;
+  border: none !important;
   background-color: var(--primary);
   color: var(--blanco);
   text-transform: uppercase;
@@ -181,7 +189,83 @@ body {
   border-radius: 1rem;
   transition: background-color 0.4s;
 }
+.boton a {
+  color: var(--blanco);
+  text-decoration: none;
+  text-align: center;
+}
 .boton:hover {
   background-color: #09754a;
   cursor: pointer;
+}
+
+.formulario {
+  display: grid;
+  gap: 3rem;
+  justify-content: center;
+}
+.formulario form {
+  width: 90vw;
+}
+@media (min-width: 992px) {
+  .formulario form {
+    width: 50vw;
+  }
+}
+.formulario fieldset {
+  border: none;
+  padding: 3rem;
+  display: grid;
+  gap: 2rem;
+}
+.campo label {
+  font-size: 2rem;
+  font-weight: 600;
+  display: block;
+}
+.campo input,
+.campo select,
+.formulario input[type="submit"] {
+  width: 100%;
+  margin-top: 1rem;
+  border: 0.2rem solid;
+  border-radius: 1rem;
+  padding: 1.5rem 1rem;
+  text-transform: capitalize;
+}
+.campo input:focus,
+.campo select:focus {
+  background-color: #eeeeee;
+}
+.campo select {
+  text-align: center;
+}
+.swipe-action__leading {
+  background-color: var(--azul);
+  color: var(--blanco);
+}
+
+.swipe-action__trailing {
+  background-color: #db2777;
+  color: var(--blanco);
+}
+.swipeable-list {
+  width: 90vw !important;
+  flex: 0 0 !important;
+  overflow-y: visible !important;
+}
+@media (min-width: 690px) {
+  .swipeable-list {
+    width: 100% !important;
+  }
+}
+.swipeable-list .swipe-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.4rem;
+  text-align: right;
+}
+.swipeable-list-item {
+  overflow: visible !important;
 }

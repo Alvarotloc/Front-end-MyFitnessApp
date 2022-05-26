@@ -1,13 +1,13 @@
 const FormularioComidas = () => {
     const categorias = ['Pasta','Carne','Pescado','Verduras','Comida Rapida','Fruta']
     return (
-      <section className="formulario-comidas">
+      <section className="formulario">
           <h2 className="sub-titulo">Agregar Comida</h2>
-          <form>
+          <form className="sombra">
               <fieldset>
                 <div className="campo">
                   <label htmlFor="nombre">Nombre comida</label>
-                  <input type="text" placeholder="Ingrese el nombre de la comida" name="nombre" id="nombre" />
+                  <input type="text" placeholder="Ingrese el nombre de la comida" name="nombre" id="nombre" autoFocus/>
                 </div>
                 <div className="campo">
                   <label htmlFor="gramos">Gramos de comida</label>
@@ -34,7 +34,7 @@ const FormularioComidas = () => {
                     ))}
                   </select>
                 </div>
-                <input type="submit" value="Agregar Comida" />
+                <input type="submit" value="Agregar Comida" className="boton"/>
               </fieldset>
           </form>
       </section>
