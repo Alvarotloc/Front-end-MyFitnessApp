@@ -20,7 +20,7 @@ const Header = () => {
             to="/agregar"
             className={`${pathname === "/agregar" ? "activo" : ""}`}
           >
-            Macros
+            Agregar
           </Link>
         </nav>
       </header>
