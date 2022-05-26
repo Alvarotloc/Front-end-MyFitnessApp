@@ -1,8 +1,8 @@
-const MacroNutriente = () => {
+const MacroNutriente = ({macro,gramos}) => {
   return (
     <div className="macronutriente">
-        <p>68g</p>
-        <p>Proteina</p>
+        <p>{gramos}</p>
+        <p>{macro}</p>
     </div>
   )
 }

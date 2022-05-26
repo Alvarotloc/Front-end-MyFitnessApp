@@ -101,6 +101,7 @@ body {
 .sub-titulo {
   font-size: 4rem;
   text-align: center;
+  text-transform: capitalize;
 }
 .CircularProgressbar .CircularProgressbar-text {
   font-size: 0.9rem !important;
@@ -189,11 +190,6 @@ body {
   font-weight: 600;
   border-radius: 1rem;
   transition: background-color 0.4s;
-}
-.boton a {
-  color: var(--blanco);
-  text-decoration: none;
-  text-align: center;
 }
 .boton:hover {
   background-color: #09754a;

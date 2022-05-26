@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   LeadingActions,
   SwipeableList,
@@ -6,9 +7,21 @@ import {
   TrailingActions,
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
+import useComidas from "../hooks/useComidas";
 import MacroNutriente from "./MacroNutriente";
 
-const Comida = () => {
+const Comida = ({comida}) => {
+  const {_id,nombre,categoria,gramos,proteinas,grasas,hidratos,kcal} = comida;
+  const {comidas,setComidas} = useComidas()
+  const eliminarComida = async () => {
+    try {
+      await axios.delete(process.env.REACT_APP_BACKEND_URL_COMIDAS,{data : {id : _id}});
+      const comidasFiltradas = comidas.filter(comida => comida._id !== _id);
+      setComidas(comidasFiltradas);
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const leadingActions = () => (
     <LeadingActions>
       <SwipeAction>Editar</SwipeAction>
@@ -17,7 +30,7 @@ const Comida = () => {
 
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction destructive={true}>
+      <SwipeAction onClick={eliminarComida} destructive={true}>
         Eliminar
       </SwipeAction>
     </TrailingActions>
@@ -28,13 +41,13 @@ const Comida = () => {
     <div className="comida sombra">
       <div className="contenido-comida">
         <h3 className="nombre-comida">
-          Pollito frito <span>150g</span>
+          {nombre} <span>{gramos}g</span>
         </h3>
         <div className="macros-contenedor">
-          <MacroNutriente />
-          <MacroNutriente />
-          <MacroNutriente />
-          <MacroNutriente />
+          <MacroNutriente macro='Proteina' gramos={proteinas}/>
+          <MacroNutriente macro='Hidratos' gramos={hidratos}/>
+          <MacroNutriente macro='Grasas' gramos={grasas}/>
+          <MacroNutriente macro='Kcal' gramos={kcal}/>
         </div>
       </div>
       <img

@@ -1,10 +1,30 @@
+import { useEffect, useState } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import useComidas from "../hooks/useComidas";
+import useObjetivo from "../hooks/useObjetivo";
 const Grafica = () => {
+  const [porcentaje, setPorcentaje] = useState(0);
+  const {comidas} = useComidas();
+  const {objetivo} = useObjetivo();
+  const {KcalDiarias} = objetivo;
+  const conseguirPorcentaje = (objetivo,kcal) => kcal * 100 / objetivo;
+  useEffect(() => {
+    if(comidas.length > 0){
+      if(comidas.length === 1){
+        setPorcentaje(conseguirPorcentaje(KcalDiarias,comidas[0].kcal));
+      }else{
+        const totalKcal = comidas.reduce((a,b) => a.kcal + b.kcal);
+        setPorcentaje(conseguirPorcentaje(KcalDiarias,totalKcal));
+      }
+    }else{
+      setPorcentaje(0);
+    }
+  },[comidas,KcalDiarias]);
   return (
     <CircularProgressbar
-      value={0}
-      text={`${0}% conseguido`}
+      value={porcentaje}
+      text={`${porcentaje}% conseguido`}
       styles={buildStyles({
         pathColor: "#00CA71",
         trailColor: "#F5F5F5",
