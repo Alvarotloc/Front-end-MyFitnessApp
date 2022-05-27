@@ -1,7 +1,7 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 const Header = () => {
-  const { pathname } = useLocation();
+  const { pathname } = useLocation(); //obtenemos la ruta actual
   return (
     <>
       <header className="header-layout">
@@ -9,7 +9,7 @@ const Header = () => {
         <nav className="nav-principal">
           <Link
             to="/objetivo"
-            className={`${pathname === "/objetivo" ? "activo" : ""}`}
+            className={`${pathname === "/objetivo" ? "activo" : ""}`} //si la ruta actual es la de objetivo, agregamos la clase activo al link
           >
             Objetivo
           </Link>
@@ -25,7 +25,7 @@ const Header = () => {
         </nav>
       </header>
       <div className="contenedor-outlet">
-        <Outlet />
+        <Outlet /> {/* el outlet es el contenedor de las rutas */}
       </div>
     </>
   );

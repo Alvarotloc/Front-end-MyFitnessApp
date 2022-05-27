@@ -3,13 +3,13 @@ import useObjetivo from "../hooks/useObjetivo";
 import Grafica from "./Grafica";
 
 const Objetivo = () => {
-  const {objetivo,setObjetivo} = useObjetivo();
-  const {_id,KcalDiarias,fecha,peso} = objetivo;
+  const {objetivo,setObjetivo} = useObjetivo(); //destructuring de los datos del provider
+  const {_id,KcalDiarias,fecha,peso} = objetivo; //destructuring de los datos del objetivo
 
   const handleEliminar = async () => {
     try {
-      await axios.delete(process.env.REACT_APP_BACKEND_URL_OBJETIVO,{data : {id : _id}}); 
-      setObjetivo({});
+      await axios.delete(process.env.REACT_APP_BACKEND_URL_OBJETIVO,{data : {id : _id}}); //eliminamos el objetivo de la base de datos
+      setObjetivo({}); //seteamos el objetivo en el provider en vacio
     } catch (error) {
       console.log(error)
     }
