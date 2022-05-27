@@ -1,21 +1,33 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Alerta from "../components/Alerta";
 import useComidas from "../hooks/useComidas";
 import useObjetivo from "../hooks/useObjetivo";
 
 const FormularioComidas = () => {
-  const [nombre, setNombre] = useState('');
-  const [gramos, setGramos] = useState('');
-  const [kcal, setKcal] = useState('');
-  const [proteinas, setProteinas] = useState('');
-  const [grasas, setGrasas] = useState('');
-  const [hidratos, setHidratos] = useState('');
-  const [categoria, setCategoria] = useState('');
+  const [nombre, setNombre] = useState("");
+  const [gramos, setGramos] = useState("");
+  const [kcal, setKcal] = useState("");
+  const [proteinas, setProteinas] = useState("");
+  const [grasas, setGrasas] = useState("");
+  const [hidratos, setHidratos] = useState("");
+  const [categoria, setCategoria] = useState("");
+  const [error, setError] = useState(false);
 
   const { objetivo } = useObjetivo();
-  const {comidaEditar,setComidaEditar,            comidas,
-    setComidas,} = useComidas();
+  const { comidaEditar, setComidaEditar, comidas, setComidas } = useComidas();
+  useEffect(() => {
+    if (Object.keys(comidaEditar).length > 0) {
+      setNombre(comidaEditar.nombre);
+      setGramos(comidaEditar.gramos);
+      setKcal(comidaEditar.kcal);
+      setProteinas(comidaEditar.proteinas);
+      setGrasas(comidaEditar.grasas);
+      setHidratos(comidaEditar.hidratos);
+      setCategoria(comidaEditar.categoria);
+    }
+  }, [comidaEditar]);
 
   const navigate = useNavigate();
 
@@ -24,47 +36,90 @@ const FormularioComidas = () => {
     "Carne",
     "Pescado",
     "Verduras",
-    "Comida Rapida",
+    "ComidaRapida",
     "Fruta",
   ];
 
-  const handleSubmit = async evento => {
+  const handleSubmit = async (evento) => {
     evento.preventDefault();
-    if([nombre,gramos,kcal,proteinas,grasas,hidratos,categoria].includes('')){
-      return
+    if ([nombre, gramos, kcal, proteinas, grasas, hidratos, categoria].includes("")){
+      setError(true);
+      return;
     }
-    if(Object.keys(comidaEditar).length > 0){
+
+    if (Object.keys(comidaEditar).length > 0) {
+      try {
+        const { data } = await axios.put(
+          process.env.REACT_APP_BACKEND_URL_COMIDAS,
+          {
+            id: comidaEditar._id,
+            nombre,
+            gramos,
+            kcal,
+            proteinas,
+            grasas,
+            hidratos,
+            categoria,
+          }
+        );
+        const comidasActualizadas = comidas.map((comida) =>
+          comida._id === data._id ? data : comida
+        );
+        setComidas(comidasActualizadas);
+        setComidaEditar({});
+        setNombre("");
+        setGramos("");
+        setKcal("");
+        setProteinas("");
+        setGrasas("");
+        setHidratos("");
+        setCategoria("");
+        setError(false);
+        navigate("/");
+      } catch (error) {
+        console.log(error);
+      }
+
       return;
     }
     try {
-      const {data} = await axios.post(process.env.REACT_APP_BACKEND_URL_COMIDAS,{
-        nombre,
-        gramos,
-        kcal,
-        grasas,
-        proteinas,
-        hidratos,
-        categoria
-      });
-  
-      setComidas([...comidas,data]); 
-      setNombre('');
-      setGramos('');
-      setKcal('');
-      setProteinas('');
-      setGrasas('');
-      setHidratos('');
-      setCategoria('');
+      const { data } = await axios.post(
+        process.env.REACT_APP_BACKEND_URL_COMIDAS,
+        {
+          nombre,
+          gramos,
+          kcal,
+          grasas,
+          proteinas,
+          hidratos,
+          categoria,
+        }
+      );
+
+      setComidas([...comidas, data]);
+      setNombre("");
+      setGramos("");
+      setKcal("");
+      setProteinas("");
+      setGrasas("");
+      setHidratos("");
+      setCategoria("");
+      setError(false);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-    navigate('/');
-  }
+    navigate("/");
+  };
 
   return Object.keys(objetivo).length !== 0 ? (
     <section className="formulario">
-      <h2 className="sub-titulo">Agregar Comida</h2>
+      <h2 className="sub-titulo">
+        {Object.keys(comidaEditar).length > 0
+          ? "Editar Comida"
+          : "Agregar Comida"}
+      </h2>
       <form className="sombra" onSubmit={handleSubmit}>
+        {error && (<Alerta />)}
         <fieldset>
           <div className="campo">
             <label htmlFor="nombre">Nombre comida</label>
@@ -85,7 +140,7 @@ const FormularioComidas = () => {
               name="gramos"
               id="gramos"
               value={gramos}
-              onChange={evento => setGramos(evento.target.value)}
+              onChange={(evento) => setGramos(evento.target.value)}
             />
           </div>
           <div className="campo">
@@ -96,7 +151,7 @@ const FormularioComidas = () => {
               name="kcal"
               id="kcal"
               value={kcal}
-              onChange={evento => setKcal(evento.target.value)}
+              onChange={(evento) => setKcal(evento.target.value)}
             />
           </div>
           <div className="campo">
@@ -107,7 +162,7 @@ const FormularioComidas = () => {
               name="proteinas"
               id="proteinas"
               value={proteinas}
-              onChange={evento => setProteinas(evento.target.value)}
+              onChange={(evento) => setProteinas(evento.target.value)}
             />
           </div>
           <div className="campo">
@@ -118,7 +173,7 @@ const FormularioComidas = () => {
               name="grasas"
               id="grasas"
               value={grasas}
-              onChange={evento => setGrasas(evento.target.value)}
+              onChange={(evento) => setGrasas(evento.target.value)}
             />
           </div>
           <div className="campo">
@@ -129,12 +184,17 @@ const FormularioComidas = () => {
               name="hidratos"
               id="hidratos"
               value={hidratos}
-              onChange={evento => setHidratos(evento.target.value)}
+              onChange={(evento) => setHidratos(evento.target.value)}
             />
           </div>
           <div className="campo">
             <label htmlFor="categoria">Categoria comida</label>
-            <select name="categoria" id="categoria" value={categoria} onChange={evento => setCategoria(evento.target.value)}>
+            <select
+              name="categoria"
+              id="categoria"
+              value={categoria}
+              onChange={(evento) => setCategoria(evento.target.value)}
+            >
               <option value="">-- Seleccione Categoria --</option>
               {categorias.map((categoria, index) => (
                 <option key={index} value={categoria}>
@@ -143,7 +203,15 @@ const FormularioComidas = () => {
               ))}
             </select>
           </div>
-          <input type="submit" value="Agregar Comida" className="boton" />
+          <input
+            type="submit"
+            value={
+              Object.keys(comidaEditar).length > 0
+                ? "Editar Comida"
+                : "Agregar Comida"
+            }
+            className="boton"
+          />
         </fieldset>
       </form>
     </section>

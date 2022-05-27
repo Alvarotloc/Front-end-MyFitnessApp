@@ -1,6 +1,6 @@
 import Comida from "../components/Comida";
 import Grafica from "../components/Grafica";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useObjetivo from "../hooks/useObjetivo";
 import useComidas from "../hooks/useComidas";
 

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import {
   LeadingActions,
   SwipeableList,
@@ -9,10 +10,34 @@ import {
 import "react-swipeable-list/dist/styles.css";
 import useComidas from "../hooks/useComidas";
 import MacroNutriente from "./MacroNutriente";
+import IconoPasta from "../imgs/Pasta.svg";
+import IconoCarne from "../imgs/Carne.svg";
+import IconoPescado from "../imgs/Pescado.svg";
+import IconoVerduras from "../imgs/Verduras.svg";
+import IconoComidaRapida from "../imgs/ComidaRapida.svg";
+import IconoFruta from "../imgs/Frutas.svg";
+
 
 const Comida = ({comida}) => {
   const {_id,nombre,categoria,gramos,proteinas,grasas,hidratos,kcal} = comida;
-  const {comidas,setComidas} = useComidas()
+  const {comidas,setComidas,setComidaEditar} = useComidas();
+  const navigate = useNavigate();
+
+  const imagenesCategoria = {
+    Pasta: IconoPasta,
+    Carne: IconoCarne,
+    Pescado: IconoPescado,
+    Verduras: IconoVerduras,
+    ComidaRapida: IconoComidaRapida,
+    Fruta: IconoFruta,
+  };
+
+
+
+  const editarComida = () => {
+    setComidaEditar(comida);
+    navigate("/agregar");
+  }
   const eliminarComida = async () => {
     try {
       await axios.delete(process.env.REACT_APP_BACKEND_URL_COMIDAS,{data : {id : _id}});
@@ -24,7 +49,7 @@ const Comida = ({comida}) => {
   }
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction>Editar</SwipeAction>
+      <SwipeAction onClick={editarComida}>Editar</SwipeAction>
     </LeadingActions>
   );
 
@@ -51,8 +76,8 @@ const Comida = ({comida}) => {
         </div>
       </div>
       <img
-        src="https://spoonacular.com/recipeImages/716429-312x231.jpg"
-        alt="Imagen de prueba"
+        src={imagenesCategoria[categoria]}
+        alt="Imagen de la comida"
         className="imagen-comida"
       />
     </div>

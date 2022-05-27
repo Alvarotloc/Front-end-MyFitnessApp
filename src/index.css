@@ -372,3 +372,13 @@ body {
 .swipeable-list-item {
   overflow: visible !important;
 }
+.error{
+  background-color: #f44336;
+  color: var(--blanco);
+  padding: 1rem;
+  border-radius: .6rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}

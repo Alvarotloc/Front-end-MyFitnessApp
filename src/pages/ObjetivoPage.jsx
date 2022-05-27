@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import Alerta from "../components/Alerta";
 import Objetivo from "../components/Objetivo";
 import useObjetivo from "../hooks/useObjetivo";
 
@@ -8,12 +9,14 @@ const ObjetivoPage = () => {
   const [KcalDiarias, setKcalDiarias] = useState('');
   const [peso, setPeso] = useState('');
   const [fecha, setFecha] = useState('');
+  const [error, setError] = useState(false);
 
   const {_id} = objetivo;
 
   const handleSubmit = async evento => {
     evento.preventDefault();
     if([KcalDiarias,peso,fecha].includes('')){
+      setError(true);
       return;
     }
     if(Object.keys(objetivo).length === 0){
@@ -24,6 +27,10 @@ const ObjetivoPage = () => {
           fecha
         }); 
         setObjetivo(data);
+        setKcalDiarias('');
+        setPeso('');
+        setFecha('');
+        setError(false);
       } catch (error) {
         console.log(error)
       }
@@ -39,6 +46,7 @@ const ObjetivoPage = () => {
     setKcalDiarias('');
     setPeso('');
     setFecha('');
+    setError(false);
   }
 
   return (
@@ -48,6 +56,7 @@ const ObjetivoPage = () => {
         <form className="sombra" onSubmit={handleSubmit}>
           <fieldset>
             <legend>{ Object.keys(objetivo).length !== 0 ? 'Cambiar Objetivo' : 'Crear Objetivo'}</legend>
+            {error && (<Alerta />)}
             <div className="campo">
               <label htmlFor="kcal">Kcal Consumir</label>
               <input

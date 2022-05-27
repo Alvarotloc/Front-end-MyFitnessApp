@@ -12,10 +12,10 @@ const Grafica = () => {
   useEffect(() => {
     if(comidas.length > 0){
       if(comidas.length === 1){
-        setPorcentaje(conseguirPorcentaje(KcalDiarias,comidas[0].kcal));
+        setPorcentaje(Number.isInteger(conseguirPorcentaje(KcalDiarias,comidas[0].kcal)) ? conseguirPorcentaje(KcalDiarias,comidas[0].kcal) : conseguirPorcentaje(KcalDiarias,comidas[0].kcal).toFixed(2));
       }else{
         const totalKcal = comidas.reduce((a,b) => a.kcal + b.kcal);
-        setPorcentaje(conseguirPorcentaje(KcalDiarias,totalKcal));
+        setPorcentaje(Number.isInteger(conseguirPorcentaje(KcalDiarias,totalKcal)) ? conseguirPorcentaje(KcalDiarias,totalKcal) : conseguirPorcentaje(KcalDiarias,totalKcal).toFixed(2));
       }
     }else{
       setPorcentaje(0);
