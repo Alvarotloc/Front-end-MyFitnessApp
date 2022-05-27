@@ -20,7 +20,7 @@ const ObjetivoProvider = ({children}) => {
         getObjetivo()
     },[])
     return (
-        <ObjetivoContext.Provider value={{
+        <ObjetivoContext.Provider value={{ // enviamos los datos del provider al componente hijo
             objetivo,
             setObjetivo
         }}>

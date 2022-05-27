@@ -6,7 +6,7 @@ import DietaMain from "./pages/DietaMain";
 import FormularioComidas from "./pages/FormularioComidas";
 import ObjetivoPage from "./pages/ObjetivoPage";
 
-const App = () => {
+const App = () => { // Componente principal de la aplicacion, contiene las rutas y los providers
   return (
     <ComidasProvider>
       <ObjetivoProvider>

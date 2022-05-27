@@ -5,10 +5,10 @@
   --grafica: #00ca71;
   --azul: #3b82f6;
   --gris-claro: #f5f5f5;
-}
+} /* Creamos las variables globales en root */
 html {
   font-size: 62.5%;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Para que funcione el rem */
 }
 *,
 *:before,
@@ -18,13 +18,14 @@ html {
   appearance: none;
   box-sizing: inherit;
   font-family: "Rubik", sans-serif;
+  /*Normalizamos */
 }
 body {
   font-size: 16px;
   /* Esto lo que hace es que 1rem equivalga a 10px */
   background-color: var(--gris-claro);
 }
-.sombra {
+.sombra { /*Componente sombra utilizado en todos los contenedores */
   box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
   -webkit-box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
   -moz-box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
@@ -32,14 +33,14 @@ body {
   padding: 4rem;
   border-radius: 1.2rem;
 }
-.header-layout {
+.header-layout { /*Útil para todo el header / layout de la página*/
   background-color: var(--primary);
   padding: 2rem 0 3rem 0;
   display: grid;
   justify-items: center;
   row-gap: 5rem;
 }
-.titulo-app {
+.titulo-app { /* Titulo principal */
   font-size: 6rem;
   font-weight: 500;
   text-transform: capitalize;
@@ -215,7 +216,7 @@ body {
   display: grid;
   gap: 2rem;
 }
-.formulario fieldset legend{
+.formulario fieldset legend {
   font-weight: 700;
   font-size: 3rem;
 }
@@ -253,9 +254,9 @@ body {
   width: 40vw;
 }
 @media (min-width: 768px) {
-    .contenedor-objetivo svg{
-      width: 25vw;
-    }
+  .contenedor-objetivo svg {
+    width: 25vw;
+  }
 }
 .dos-columnas {
   flex-direction: column;
@@ -312,33 +313,33 @@ body {
   cursor: pointer;
 }
 
-.not-objetivo{
+.not-objetivo {
   width: 100%;
   padding: 0 2rem;
-  display:flex;
-  align-items:center;
+  display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 2rem;
 }
-.not-objetivo h1{
+.not-objetivo h1 {
   text-transform: capitalize;
   text-align: center;
 }
-.not-objetivo h1 span{
+.not-objetivo h1 span {
   color: var(--grafica);
 }
-.not-objetivo button{
+.not-objetivo button {
   padding: 1rem 4rem;
   border-radius: 1rem;
   background-color: var(--grafica);
-  border: .1rem solid;
+  border: 0.1rem solid;
   cursor: pointer;
   font-size: 1.5rem;
   font-weight: 700;
   color: #191919;
-  transition: all .4s;
+  transition: all 0.4s;
 }
-.not-objetivo button:hover{
+.not-objetivo button:hover {
   background-color: var(--primary);
   color: var(--blanco);
 }
@@ -372,11 +373,11 @@ body {
 .swipeable-list-item {
   overflow: visible !important;
 }
-.error{
+.error {
   background-color: #f44336;
   color: var(--blanco);
   padding: 1rem;
-  border-radius: .6rem;
+  border-radius: 0.6rem;
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;

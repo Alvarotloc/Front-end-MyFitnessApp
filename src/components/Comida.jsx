@@ -30,7 +30,7 @@ const Comida = ({ comida }) => {
     Carne: IconoCarne,
     Pescado: IconoPescado,
     Verduras: IconoVerduras,
-    ComidaRapida: IconoComidaRapida,
+    'Comida Rapida': IconoComidaRapida,
     Fruta: IconoFruta,
   };
 

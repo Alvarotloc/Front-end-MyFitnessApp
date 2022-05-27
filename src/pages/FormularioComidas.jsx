@@ -6,6 +6,7 @@ import useComidas from "../hooks/useComidas";
 import useObjetivo from "../hooks/useObjetivo";
 
 const FormularioComidas = () => {
+  // Creamos los states para los datos del formulario
   const [nombre, setNombre] = useState("");
   const [gramos, setGramos] = useState("");
   const [kcal, setKcal] = useState("");
@@ -13,11 +14,14 @@ const FormularioComidas = () => {
   const [grasas, setGrasas] = useState("");
   const [hidratos, setHidratos] = useState("");
   const [categoria, setCategoria] = useState("");
-  const [error, setError] = useState(false);
 
+  const [error, setError] = useState(false); // para mostrar los errores
+
+  // traemos los datos de los providers
   const { objetivo } = useObjetivo();
   const { comidaEditar, setComidaEditar, comidas, setComidas } = useComidas();
-  useEffect(() => {
+
+  useEffect(() => { // para mostrar los datos de la comida editar en el formulario si es que hay una comida a editar
     if (Object.keys(comidaEditar).length > 0) {
       setNombre(comidaEditar.nombre);
       setGramos(comidaEditar.gramos);
@@ -29,25 +33,25 @@ const FormularioComidas = () => {
     }
   }, [comidaEditar]);
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // para redireccionar a la pagina de dieta
 
-  const categorias = [
+  const categorias = [ // para mostrar las categorias en el formulario
     "Pasta",
     "Carne",
     "Pescado",
     "Verduras",
-    "ComidaRapida",
+    "Comida Rapida",
     "Fruta",
   ];
 
   const handleSubmit = async (evento) => {
-    evento.preventDefault();
-    if ([nombre, gramos, kcal, proteinas, grasas, hidratos, categoria].includes("")){
+    evento.preventDefault(); // para que no se recargue la pagina
+    if ([nombre, gramos, kcal, proteinas, grasas, hidratos, categoria].includes("")){ // si hay un campo vacio, mostramos un error
       setError(true);
       return;
     }
 
-    if (Object.keys(comidaEditar).length > 0) {
+    if (Object.keys(comidaEditar).length > 0) { // si hay una comida a editar, actualizamos los datos de la comida
       try {
         const { data } = await axios.put(
           process.env.REACT_APP_BACKEND_URL_COMIDAS,
@@ -62,7 +66,7 @@ const FormularioComidas = () => {
             categoria,
           }
         );
-        const comidasActualizadas = comidas.map((comida) =>
+        const comidasActualizadas = comidas.map((comida) => // actualizamos la lista de comidas
           comida._id === data._id ? data : comida
         );
         setComidas(comidasActualizadas);
@@ -74,14 +78,14 @@ const FormularioComidas = () => {
         setGrasas("");
         setHidratos("");
         setCategoria("");
-        setError(false);
-        navigate("/");
+        setError(false); // limpiamos el error
+        navigate("/"); // redireccionamos a la pagina de dieta
       } catch (error) {
         console.log(error);
       }
-
       return;
     }
+    // si no hay una comida a editar, agregamos una nueva comida
     try {
       const { data } = await axios.post(
         process.env.REACT_APP_BACKEND_URL_COMIDAS,
@@ -104,22 +108,22 @@ const FormularioComidas = () => {
       setGrasas("");
       setHidratos("");
       setCategoria("");
-      setError(false);
+      setError(false); // limpiamos el error
+      navigate("/"); // redireccionamos a la pagina de dieta
     } catch (error) {
       console.log(error);
     }
-    navigate("/");
   };
 
-  return Object.keys(objetivo).length !== 0 ? (
+  return Object.keys(objetivo).length !== 0 ? ( // si hay un objetivo, mostramos el formulario
     <section className="formulario">
       <h2 className="sub-titulo">
-        {Object.keys(comidaEditar).length > 0
+        {Object.keys(comidaEditar).length > 0 // si hay una comida a editar, mostramos el titulo de editar comida, si no, el de agregar comida
           ? "Editar Comida"
           : "Agregar Comida"}
       </h2>
       <form className="sombra" onSubmit={handleSubmit}>
-        {error && (<Alerta />)}
+        {error && (<Alerta />)} {/* si hay un error, mostramos la alerta */}
         <fieldset>
           <div className="campo">
             <label htmlFor="nombre">Nombre comida</label>
@@ -129,7 +133,7 @@ const FormularioComidas = () => {
               name="nombre"
               id="nombre"
               value={nombre}
-              onChange={(evento) => setNombre(evento.target.value)}
+              onChange={(evento) => setNombre(evento.target.value)} // para actualizar el nombre de la comida, two way binding
             />
           </div>
           <div className="campo">
@@ -196,7 +200,7 @@ const FormularioComidas = () => {
               onChange={(evento) => setCategoria(evento.target.value)}
             >
               <option value="">-- Seleccione Categoria --</option>
-              {categorias.map((categoria, index) => (
+              {categorias.map((categoria, index) => ( // mostramos las categorias de comidas
                 <option key={index} value={categoria}>
                   {categoria}
                 </option>
@@ -206,7 +210,7 @@ const FormularioComidas = () => {
           <input
             type="submit"
             value={
-              Object.keys(comidaEditar).length > 0
+              Object.keys(comidaEditar).length > 0 // si hay una comida a editar, mostramos el boton de editar, si no, el de agregar comida
                 ? "Editar Comida"
                 : "Agregar Comida"
             }
