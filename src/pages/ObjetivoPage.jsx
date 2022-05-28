@@ -1,65 +1,20 @@
-import axios from "axios";
-import { useState } from "react";
 import Alerta from "../components/Alerta";
 import Objetivo from "../components/Objetivo";
 import useObjetivo from "../hooks/useObjetivo";
+import useObjetivoPage from "../hooks/useObjetivoPage";
 
 const ObjetivoPage = () => {
-  const { objetivo, setObjetivo } = useObjetivo(); // traemos los datos del provider
-
-  // creamos los states para los inputs del formulario
-  const [KcalDiarias, setKcalDiarias] = useState("");
-  const [peso, setPeso] = useState("");
-  const [fecha, setFecha] = useState("");
-
-  const [error, setError] = useState(false); // para mostrar los errores
-
-  const { _id } = objetivo; // traemos el id del objetivo
-
-  const handleSubmit = async (evento) => {
-    evento.preventDefault(); // para que no se recargue la pagina
-    if ([KcalDiarias, peso, fecha].includes("")) {
-      // si hay un campo vacio, mostramos un error
-      setError(true);
-      return;
-    }
-    if (Object.keys(objetivo).length === 0) {
-      // si no hay un objetivo, creamos uno nuevo
-      try {
-        const { data } = await axios.post(
-          process.env.REACT_APP_BACKEND_URL_OBJETIVO,
-          {
-            KcalDiarias,
-            peso,
-            fecha,
-          }
-        );
-        setObjetivo(data);
-        setKcalDiarias("");
-        setPeso("");
-        setFecha("");
-        setError(false); // para que no se muestre el error
-      } catch (error) {
-        console.log(error);
-      }
-      return;
-    }
-    const { data } = await axios.put(
-      process.env.REACT_APP_BACKEND_URL_OBJETIVO,
-      {
-        // si hay un objetivo, actualizamos los datos del objetivo
-        id: _id,
-        KcalDiarias,
-        peso,
-        fecha,
-      }
-    );
-    setObjetivo(data);
-    setKcalDiarias("");
-    setPeso("");
-    setFecha("");
-    setError(false); // para que no se muestre el error
-  };
+  const {
+    KcalDiarias,
+    setKcalDiarias,
+    peso,
+    setPeso,
+    fecha,
+    setFecha,
+    error,
+    handleSubmit,
+  } = useObjetivoPage();
+  const { objetivo } = useObjetivo(); // traemos los datos de los providers
 
   return (
     <section className="formulario">

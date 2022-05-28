@@ -3,11 +3,12 @@ import Grafica from "../components/Grafica";
 import { useNavigate } from "react-router-dom";
 import useObjetivo from "../hooks/useObjetivo";
 import useComidas from "../hooks/useComidas";
+import Modal from "../components/Modal";
 
 const DietaMain = () => {
   // traemos los datos de los providers
   const { objetivo } = useObjetivo();
-  const { comidas } = useComidas();
+  const { comidas,modalActiva } = useComidas();
 
   const navigate = useNavigate(); // para redireccionar a la pagina de objetivo
 
@@ -16,7 +17,7 @@ const DietaMain = () => {
       <div className="contenedor-grafica sombra">
         <h2 className="sub-titulo">Objetivo Diario</h2>
         <Grafica />
-        <button className="boton" onClick={() => navigate('/agregar')}>Agregar Comida</button>
+        <button type="button" className="boton" onClick={() => navigate('/agregar')}>Agregar Comida</button>
       </div>
       <div className="comidas">
         {comidas.length !== 0 ? ( // si hay comidas, las mostramos
@@ -25,6 +26,7 @@ const DietaMain = () => {
           <h2 className="sub-titulo">No hay comidas en la lista</h2> // si no hay comidas, mostramos un mensaje
         )}
       </div>
+      {modalActiva && <Modal />}
     </main>
   ) : ( // si no hay datos del objetivo, mostramos un mensaje
     <div className="not-objetivo"> 
@@ -32,7 +34,7 @@ const DietaMain = () => {
         Antes de agregar <span>comidas</span> debes crear un{" "}
         <span>objetivo</span>
       </h1>
-      <button onClick={() => navigate("/objetivo")}>Crear Objetivo</button>
+      <button type="button" onClick={() => navigate("/objetivo")}>Crear Objetivo</button>
     </div>
   );
 };

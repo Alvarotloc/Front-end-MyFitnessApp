@@ -7,7 +7,7 @@ const ComidasProvider = ({children}) => {
     //creamos los dos states del provider
     const [comidas, setComidas] = useState([]);
     const [comidaEditar, setComidaEditar] = useState({});
-
+    const [modalActiva, setModalActiva] = useState(false);  
     useEffect(() => {
         // cuando el componente cargue, hacemos la peticion para traer las comidas de la base de datos
         const getComidas = async () => {
@@ -25,7 +25,9 @@ const ComidasProvider = ({children}) => {
             comidas,
             setComidas,
             comidaEditar,
-            setComidaEditar
+            setComidaEditar,
+            modalActiva,
+            setModalActiva
         }}>
             {children}
         </ComidasContext.Provider>

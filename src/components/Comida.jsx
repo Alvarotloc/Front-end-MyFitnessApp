@@ -30,11 +30,11 @@ const Comida = ({ comida }) => {
     Carne: IconoCarne,
     Pescado: IconoPescado,
     Verduras: IconoVerduras,
-    'Comida Rapida': IconoComidaRapida,
+    "Comida Rapida": IconoComidaRapida,
     Fruta: IconoFruta,
   };
 
-  const editarComida = () => { 
+  const editarComida = () => {
     setComidaEditar(comida); //seteamos la comida que se va a editar en el provider
     navigate("/agregar"); //redireccionamos a la pagina de agregar comida
   };
@@ -50,13 +50,15 @@ const Comida = ({ comida }) => {
       console.log(error);
     }
   };
-  const leadingActions = () => ( //funcion para editar la comida con el drag de swipeable list
+  const leadingActions = () => (
+    //funcion para editar la comida con el drag de swipeable list
     <LeadingActions>
       <SwipeAction onClick={editarComida}>Editar</SwipeAction>
     </LeadingActions>
   );
 
-  const trailingActions = () => ( //funcion para eliminar la comida con el drag de swipeable list
+  const trailingActions = () => (
+    //funcion para eliminar la comida con el drag de swipeable list
     <TrailingActions>
       <SwipeAction onClick={eliminarComida} destructive={true}>
         Eliminar
