@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import Alerta from "../components/Alerta";
+import NotObjetivo from "../components/NotObjetivo";
 import useComidas from "../hooks/useComidas";
 import useFormularioComidas from "../hooks/useFormularioComidas";
 import useObjetivo from "../hooks/useObjetivo";
@@ -26,8 +26,6 @@ const FormularioComidas = () => {
     setHidratos,
     setCategoria,
   } = useFormularioComidas();
-
-  const navigate = useNavigate(); // para redireccionar a la pagina de dieta
 
   const categorias = [
     // para mostrar las categorias en el formulario
@@ -153,17 +151,7 @@ const FormularioComidas = () => {
     );
   }
 
-  return ( // si no hay un objetivo, mostramos el mensaje de que no hay objetivo por default
-    <div className="not-objetivo">
-      <h1>
-        Antes de agregar <span>comidas</span> debes crear un{" "}
-        <span>objetivo</span>
-      </h1>
-      <button type="button" onClick={() => navigate("/objetivo")}>
-        Crear Objetivo
-      </button>
-    </div>
-  );
+  return ( <NotObjetivo /> ); // si no hay un objetivo, mostramos el componente de no objetivo
 };
 
 export default FormularioComidas;

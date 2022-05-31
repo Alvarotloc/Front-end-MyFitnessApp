@@ -47,7 +47,7 @@ body {
   color: var(--blanco);
   text-align: center;
 }
-.nav-principal {
+.nav-principal { /* Navegacion principal */
   display: flex;
   align-items: flex-end;
   gap: 13vw;
@@ -58,57 +58,57 @@ body {
   text-transform: uppercase;
   transition: font-size 0.3s 0.1s;
 }
-.activo {
+.activo { /* Estilo para el enlace cuando esté en su page */
   font-weight: 500;
   font-size: 2.5rem;
 }
-.nav-principal a:not(.activo):hover {
+.nav-principal a:not(.activo):hover { /* Estilo para el enlace cuando se le haga hover */
   font-size: 1.7rem;
 }
-.contenedor-outlet {
+.contenedor-outlet { /* Donde va el resto del contenido que no es el header */
   padding: 5rem 0;
 }
-.dieta-main {
+.dieta-main { /* Estilos pagina de inicio */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10rem;
   padding: 0 5rem;
 }
-@media (min-width: 1310px) {
+@media (min-width: 1310px) { /* Estilos para pantallas grandes, ya que el estilo base es mobile */
   .dieta-main {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     align-items: flex-start;
   }
 }
-.contenedor-grafica {
+.contenedor-grafica { /* Donde irá la grafica */
   display: grid;
   justify-items: center;
   gap: 5rem;
   width: 90vw;
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) { /* Estilos para pantallas medianas, ya que el estilo base es mobile */
   .contenedor-grafica {
     width: 50vw;
   }
 }
-@media (min-width: 1310px) {
+@media (min-width: 1310px) { /* Estilos para pantallas grandes, ya que el estilo base es mobile */
   .contenedor-grafica {
     grid-column: 1 / 4;
     width: auto;
   }
 }
-.sub-titulo {
+.sub-titulo { /* Estilos para los sub-titulos, generalmente h2 */
   font-size: 4rem;
   text-align: center;
   text-transform: capitalize;
 }
-.CircularProgressbar .CircularProgressbar-text {
-  font-size: 0.8rem !important;
+.CircularProgressbar .CircularProgressbar-text { /* Estilos para el paquete de la gráfica circular */
+  font-size: 0.8rem !important; /* Para que no se vea demasiado grande, hemos de usar el !important para sobreescribir el css de base del paquete */
   font-weight: 600;
 }
-.comidas {
+.comidas { /* Estilos para la lista de comidas */
   overflow-y: scroll;
   padding: 1rem;
   height: 110vh;
@@ -117,7 +117,7 @@ body {
   grid-column: 4 / 8;
   gap: 5rem;
 }
-.comida {
+.comida { /* Estilos para cada comida individual */
   padding: 2rem;
   width: 100%;
   border-radius: 1rem;
@@ -127,37 +127,37 @@ body {
   gap: 3rem;
   cursor: pointer;
 }
-@media (min-width: 690px) {
+@media (min-width: 690px) { /* Estilos para pantallas medianas, ya que el estilo base es mobile */
   .comida {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
   }
 }
-.contenido-comida {
+.contenido-comida { /* Estilos para el contenido de cada comida */
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
   align-items: center;
 }
-@media (min-width: 690px) {
+@media (min-width: 690px) { /* Estilos para pantallas medianas, ya que el estilo base es mobile */
   .contenido-comida {
     grid-column: 1 / 6;
     align-items: flex-start;
   }
 }
-.macros-contenedor {
+.macros-contenedor { /* Estilos para el contenedor de los macronutrientes */
   display: flex;
   flex-wrap: wrap;
   gap: 3vw;
   font-weight: 600;
   justify-content: center;
 }
-@media (min-width: 455px) {
+@media (min-width: 455px) { /* Estilos para pantallas medianas, ya que el estilo base es mobile */
   .macros-contenedor {
     flex-wrap: nowrap;
   }
 }
-.nombre-comida {
+.nombre-comida { /* Estilos para el nombre de la comida */
   font-size: 3.2rem;
 }
 .nombre-comida span {
@@ -166,21 +166,18 @@ body {
 }
 .macronutriente {
   text-align: center;
-  /* background-color: var(--secundary);
-  padding: 1rem;
-  border-radius: 1rem; */
 }
-.imagen-comida {
+.imagen-comida { /* Estilos para la imagen de la comida */
   height: 10rem;
   width: 10rem;
   border-radius: 50%;
 }
-@media (min-width: 690px) {
+@media (min-width: 690px) { /* Estilos para pantallas medianas, ya que el estilo base es mobile */
   .imagen-comida {
     grid-column: 6 / 7;
   }
 }
-.boton {
+.boton { /* Estilos para el componente de botón, reutilizado en todas las páginas */
   width: 100%;
   padding: 1.5rem 0;
   border: none !important;
@@ -196,8 +193,7 @@ body {
   background-color: #09754a;
   cursor: pointer;
 }
-
-.formulario {
+.formulario { /* Estilos para el componente formulario, se repite en agregar/editar comidas y en el objetivo */
   display: grid;
   gap: 3rem;
   justify-items: center;
@@ -205,7 +201,7 @@ body {
 .formulario form {
   width: 90vw;
 }
-@media (min-width: 1100px) {
+@media (min-width: 1100px) { /* Estilos para pantallas grandes, ya que el estilo base es mobile */
   .formulario form {
     width: 50vw;
   }
@@ -236,24 +232,24 @@ body {
   text-transform: capitalize;
 }
 .campo input:focus,
-.campo select:focus {
+.campo select:focus { /* Estilos para cuando el input esté en uso */
   background-color: #eeeeee;
 }
 .campo select {
   text-align: center;
 }
 
-.contenedor-objetivo {
+.contenedor-objetivo { /* Estilos para el contenedor del objetivo */
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5rem;
 }
-.contenedor-objetivo svg {
+.contenedor-objetivo svg { /* Estilos para la gráfica del objetivo, que tiene estilos distintos a los del main */
   width: 40vw;
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) { /* Estilos para pantallas medianas, ya que el estilo base es mobile */
   .contenedor-objetivo svg {
     width: 25vw;
   }
@@ -295,7 +291,7 @@ body {
   font-weight: 700;
   color: #191919;
 }
-.reset-app {
+.reset-app { /* Estilos para el botón de resetear la app */
   border: none;
   background-color: #db2777;
   padding: 1rem;
@@ -313,7 +309,7 @@ body {
   cursor: pointer;
 }
 
-.not-objetivo {
+.not-objetivo { /* Estilos para el componente que aparece si no hay objetivo definido */
   width: 100%;
   padding: 0 2rem;
   display: flex;
@@ -328,22 +324,13 @@ body {
 .not-objetivo h1 span {
   color: var(--grafica);
 }
-.not-objetivo button {
-  padding: 1rem 4rem;
-  border-radius: 1rem;
-  background-color: var(--grafica);
-  border: 0.1rem solid;
-  cursor: pointer;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #191919;
-  transition: all 0.4s;
-}
-.not-objetivo button:hover {
-  background-color: var(--primary);
-  color: var(--blanco);
+.not-objetivo .boton{ /* Estilos personalizados para la clase boton cuando pertenezca a not-objetivo */
+  width: auto;
+  padding: 2rem;
+  text-decoration: none;
 }
 
+/* Para reescribir los estilos por default del paquete de react-swipeable-list y hacerlo responsive */
 .swipe-action__leading {
   background-color: var(--azul);
   color: var(--blanco);
@@ -373,7 +360,9 @@ body {
 .swipeable-list-item {
   overflow: visible !important;
 }
-.error {
+
+
+.error { /* Estilos para el componente de error */
   background-color: #f44336;
   color: var(--blanco);
   padding: 1rem;
@@ -382,8 +371,8 @@ body {
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: capitalize;
-}
-.modal{
+} 
+.modal{ /* Estilos para el componente modal */
   position: fixed;
   top: 0;
   left: 0;
@@ -397,7 +386,7 @@ body {
   align-items: center;
   gap: 5rem;
 }
-.contenedor-modal{
+.contenedor-modal{ /* Estilos para el contenedor de la modal */
   width: 90vw;
   background-color: var(--gris-claro);
   border-radius: 1rem;
@@ -409,7 +398,7 @@ body {
   gap: 3rem;
   position: relative;
 }
-@media (min-width: 1160px) {
+@media (min-width: 1160px) { /* Estilos para pantallas medianas, ya que el estilo base es mobile */
     .contenedor-modal{
       width: 50vw;
     }
@@ -431,7 +420,7 @@ body {
 .imagen-instruccion{
   width: 90%;
 }
-.cerrar-modal{
+.cerrar-modal{ /* Estilos para el botón de cerrar la modal */
   position: absolute;
   top: 0;
   right: 0;

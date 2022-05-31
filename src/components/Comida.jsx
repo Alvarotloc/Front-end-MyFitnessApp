@@ -19,8 +19,7 @@ import IconoFruta from "../imgs/Frutas.svg";
 
 const Comida = ({ comida }) => {
   //comida es un objeto con todos los datos de la comida
-  const { _id, nombre, categoria, gramos, proteinas, grasas, hidratos, kcal } =
-    comida; //destructuring de los datos de la comida
+  const { _id, nombre, categoria, gramos, proteinas, grasas, hidratos, kcal } = comida; //destructuring de los datos de la comida
   const { comidas, setComidas, setComidaEditar } = useComidas(); //destructuring de los datos del provider
   const navigate = useNavigate(); //para redireccionar a la pagina de editar / agregar comida
 

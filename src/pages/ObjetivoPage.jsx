@@ -19,7 +19,7 @@ const ObjetivoPage = () => {
   return (
     <section className="formulario">
       <h2 className="sub-titulo">Objetivo Personal</h2>
-      {Object.keys(objetivo).length !== 0 && <Objetivo />}{" "}
+      {Object.keys(objetivo).length !== 0 && <Objetivo />}
       {/* si hay un objetivo, mostramos el componente Objetivo */}
       <form className="sombra" onSubmit={handleSubmit}>
         <fieldset>
@@ -28,7 +28,7 @@ const ObjetivoPage = () => {
               ? "Cambiar Objetivo"
               : "Crear Objetivo"}
           </legend>
-          {error && <Alerta />}{" "}
+          {error && <Alerta />}
           {/* si hay un error, mostramos el componente Alerta */}
           <div className="campo">
             <label htmlFor="kcal">Kcal Consumir</label>

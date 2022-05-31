@@ -18,7 +18,7 @@ const Grafica = () => {
         setPorcentaje(
           Number.isInteger(conseguirPorcentaje(KcalDiarias, comidas[0].kcal))
             ? conseguirPorcentaje(KcalDiarias, comidas[0].kcal)
-            : conseguirPorcentaje(KcalDiarias, comidas[0].kcal).toFixed(2) //redondeamos el porcentaje a dos decimales, si no es entero
+            : conseguirPorcentaje(KcalDiarias, comidas[0].kcal).toFixed(2) //redondeamos el porcentaje a dos decimales si no es entero
         );
       } else {
         const arrayKcal = comidas.map((comida) => comida.kcal); //array de los kcal de las comidas
