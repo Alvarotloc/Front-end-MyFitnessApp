@@ -188,6 +188,8 @@ body {
   font-weight: 600;
   border-radius: 1rem;
   transition: background-color 0.4s;
+  text-decoration: none;
+  text-align: center;
 }
 .boton:hover {
   background-color: #09754a;
