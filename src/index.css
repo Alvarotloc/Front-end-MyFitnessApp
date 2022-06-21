@@ -72,14 +72,19 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10rem;
+  gap: 5rem;
   padding: 0 5rem;
 }
-@media (min-width: 1310px) { /* Estilos para pantallas grandes, ya que el estilo base es mobile */
+@media (min-width: 992px) { /* Estilos para pantallas grandes, ya que el estilo base es mobile */
   .dieta-main {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     align-items: flex-start;
+  }
+}
+@media (min-width: 1100px) {
+  .dieta-main {
+    gap: 10rem;
   }
 }
 .contenedor-grafica { /* Donde irá la grafica */
@@ -93,7 +98,7 @@ body {
     width: 50vw;
   }
 }
-@media (min-width: 1310px) { /* Estilos para pantallas grandes, ya que el estilo base es mobile */
+@media (min-width: 992px) { /* Estilos para pantallas grandes, ya que el estilo base es mobile */
   .contenedor-grafica {
     grid-column: 1 / 4;
     width: auto;
@@ -111,7 +116,7 @@ body {
 .comidas { /* Estilos para la lista de comidas */
   overflow-y: scroll;
   padding: 1rem;
-  height: 110vh;
+  max-height: 110vh;
   display: flex;
   flex-direction: column;
   grid-column: 4 / 8;
